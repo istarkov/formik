@@ -2,7 +2,7 @@
 import type { ChildrenProps } from '../dist/formik';
 
 export default function bind<
-  Values: {},
+  Values: { +[string]: mixed },
   N: $Keys<Values>,
   Props: ChildrenProps<Values>
 >(
@@ -12,7 +12,7 @@ export default function bind<
   const values: Values = props.values;
 
   return {
-    value: values[name] || null,
+    value: values[name] || '',
     onChange: props.handleChange(name),
     onBlur: props.handleBlur(name),
     error: Boolean(props.touched[name] === true && props.errors[name]),
